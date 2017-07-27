@@ -1,12 +1,20 @@
 package com.zs.ssh.service.impl;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.zs.ssh.model.Category;
 import com.zs.ssh.service.CategoryService;
 import com.zs.ssh.utils.HibernateSessionFactory;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
+	
+	//自动注入配置的SessionFactory Bean
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	@Override
 	public void save(Category category) {
@@ -25,6 +33,11 @@ public class CategoryServiceImpl implements CategoryService {
         } finally {  
             HibernateSessionFactory.closeSession();  
         }         
+	}
+
+	@Override
+	public void update(Category category) {
+		sessionFactory.getCurrentSession().update(category);
 	}
 
 }

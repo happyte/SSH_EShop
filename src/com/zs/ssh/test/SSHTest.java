@@ -17,11 +17,14 @@ import com.zs.ssh.service.impl.CategoryServiceImpl;
 //Spring的单元测试
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(locations = {"classpath:applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath:applicationContext*.xml"})
 public class SSHTest {
 	
 	@Autowired
 	private Date date;
+	
+	@Autowired
+	private CategoryService categoryService;
 
 	//Spring的单元测试失败，不知道是不是因为包的原因引起的
 	//把全部的jar包导入进来，测试成功了......
@@ -32,8 +35,11 @@ public class SSHTest {
 
 	@Test
 	public void testHibernate(){
-		Category category = new Category("男士休闲", true);
-		CategoryServiceImpl categoryService = new CategoryServiceImpl();
-		categoryService.save(category);
+		categoryService.save(new Category("男士休闲", true));
+	}
+	
+	@Test
+	public void testUpdate(){
+		categoryService.update(new Category(1, "女士休闲", false));
 	}
 }
