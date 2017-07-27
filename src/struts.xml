@@ -8,5 +8,9 @@
 		<action name="category_*" class="com.zs.ssh.action.CategoryAction" method="{1}">
 			<result name="index">/index.jsp</result>
 		</action>
+		
+		<action name="send_*_*" class="com.zs.ssh.action.SendAction">
+			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
+		</action>
 	</package>
 </struts>
