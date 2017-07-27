@@ -1,8 +1,10 @@
 package com.zs.ssh.service;
 
+import java.util.List;
+
 import com.zs.ssh.model.Category;
 
-public interface CategoryService {
-	public void save(Category category);
-	public void update(Category category);
+//基本的增删改查
+public interface CategoryService extends BaseService<Category> {
+	//现在只需要添加CategoryService的接口
 }

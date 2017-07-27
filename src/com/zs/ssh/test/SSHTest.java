@@ -42,4 +42,20 @@ public class SSHTest {
 	public void testUpdate(){
 		categoryService.update(new Category(1, "女士休闲", false));
 	}
+	
+	@Test
+	public void testDelete(){
+		categoryService.delete(1);
+	}
+	
+	@Test
+	public void testGet(){
+		System.out.println(categoryService.get(1));
+	}
+	
+	@Test
+	public void testGetAll(){
+		System.out.println(categoryService.query());
+	}
+	
 }
