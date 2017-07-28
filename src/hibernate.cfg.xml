@@ -15,6 +15,7 @@
 		<property name="show_sql">true</property>
         
         <mapping class="com.zs.ssh.model.Category"/>
+        <mapping class="com.zs.ssh.model.Account"/>
         
     </session-factory>
 </hibernate-configuration>

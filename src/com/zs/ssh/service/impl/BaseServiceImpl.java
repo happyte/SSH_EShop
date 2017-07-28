@@ -14,16 +14,16 @@ public class BaseServiceImpl<T> implements BaseService<T> {
 	private Class clazz;
 	
 	public BaseServiceImpl() {
-		System.out.println("this代表的是当前调用构造方法的对象" + this);  
-		System.out.println("this的父类信息:"+this.getClass().getSuperclass());
-		System.out.println("this的父类信息包括泛型:"+this.getClass().getGenericSuperclass());
+//		System.out.println("this代表的是当前调用构造方法的对象" + this);  
+//		System.out.println("this的父类信息:"+this.getClass().getSuperclass());
+//		System.out.println("this的父类信息包括泛型:"+this.getClass().getGenericSuperclass());
 		//拿到泛型的参数类型
 		ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
 		clazz = (Class) type.getActualTypeArguments()[0];
 		//com.zs.ssh.model.Category
-		System.out.println("clazz:"+clazz);
+		//System.out.println("clazz:"+clazz);
 		//Category
-		System.out.println("simpleName:"+clazz.getSimpleName());
+		//System.out.println("simpleName:"+clazz.getSimpleName());
 	}
 	
 	//自动注入配置的SessionFactory Bean
