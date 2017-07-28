@@ -20,4 +20,12 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 						   .list();
 	}
 
+	@Override
+	public Long getCount(String type) {
+		String hql = "select count(c) from Category c where c.type like:type ";
+		return (Long) getSession().createQuery(hql)
+				.setString("type",  "%"+type+"%")
+				.uniqueResult();
+	}
+
 }

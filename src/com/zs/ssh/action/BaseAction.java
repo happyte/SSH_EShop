@@ -7,11 +7,15 @@ import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.zs.ssh.service.CategoryService;
 
+@Controller
+@Scope("prototype")   //非单例的
 public class BaseAction<T> extends ActionSupport implements RequestAware,SessionAware,ApplicationAware,ModelDriven<T> {
 	
 	private static final long serialVersionUID = 1L;
@@ -21,7 +25,34 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected Map<String, Object> application;
 	protected Map<String, Object> session;
 	protected Map<String, Object> request;
-	
+	//获取从easy ui发送请求的page和rows参数
+	protected int page;
+	protected int rows;
+	protected Map<String, Object> pageMap = null;
+
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+
+	public Map<String, Object> getPageMap() {
+		return pageMap;
+	}
+
+	public void setPageMap(Map<String, Object> pageMap) {
+		this.pageMap = pageMap;
+	}
 
 	@Override
 	public void setApplication(Map<String, Object> application) {

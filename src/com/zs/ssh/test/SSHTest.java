@@ -68,4 +68,9 @@ public class SSHTest {
 		System.out.println(categoryService.queryJoinAccount("",1,2));
 	}
 	
+	@Test
+	public void testGetCount(){
+		System.out.println(categoryService.getCount(""));
+	}
+	
 }

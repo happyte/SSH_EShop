@@ -4,9 +4,18 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-	<package name="defalut" namespace="/" extends="struts-default">
+	<package name="defalut" namespace="/" extends="json-default">
 		<action name="category_*" class="com.zs.ssh.action.CategoryAction" method="{1}">
-			<result name="index">/index.jsp</result>
+			<!-- 必须要先添加json包，然后上面继承json-default -->  
+			<result name="jsonMap" type="json">
+				<!-- 要转换成json对象的数据 -->
+				<param name="root">pageMap</param>
+				<!-- 配置不需要过滤的选项 -->
+				<param name="excludeProperties">
+					rows\[\d+\]\.account\.pass,
+					rows\[\d+\]\.account\.name
+				</param>
+			</result>
 		</action>
 		
 		<action name="send_*_*" class="com.zs.ssh.action.SendAction">
