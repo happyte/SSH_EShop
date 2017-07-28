@@ -39,9 +39,9 @@
 				}
 				else {
 					$("#tt").tabs("add",{
-						title:text,  
-	                    closable:true,  
-	                    content:'哈哈'  
+	                    title:text,
+						closable:true,
+						content:'<iframe title=' + text + ' src=' + href + ' frameborder="0" width="100%" height="100%" />'
 					});
 				}
 			});

@@ -14,7 +14,6 @@ import com.zs.ssh.model.Account;
 import com.zs.ssh.model.Category;
 import com.zs.ssh.service.AccountService;
 import com.zs.ssh.service.CategoryService;
-import com.zs.ssh.service.impl.CategoryServiceImpl;
 
 //Spring的单元测试
 @RunWith(SpringJUnit4ClassRunner.class)
