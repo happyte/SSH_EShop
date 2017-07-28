@@ -28,4 +28,11 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 				.uniqueResult();
 	}
 
+	@Override
+	public void deleteByIds(String ids) {
+		//删除集合操作
+		String hql = "delete from Category c where c.id in (" + ids + ")";
+		getSession().createQuery(hql).executeUpdate();
+	}
+
 }

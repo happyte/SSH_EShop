@@ -1,5 +1,6 @@
 package com.zs.ssh.action;
 
+import java.io.InputStream;
 import java.lang.reflect.ParameterizedType;
 import java.util.Map;
 
@@ -29,6 +30,8 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected int page;
 	protected int rows;
 	protected Map<String, Object> pageMap = null;
+	protected String ids;
+	protected InputStream inputStream;
 
 	public int getPage() {
 		return page;
@@ -52,6 +55,22 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 
 	public void setPageMap(Map<String, Object> pageMap) {
 		this.pageMap = pageMap;
+	}
+
+	public String getIds() {
+		return ids;
+	}
+
+	public void setIds(String ids) {
+		this.ids = ids;
+	}
+
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
 	}
 
 	@Override

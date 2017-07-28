@@ -1,5 +1,6 @@
 package com.zs.ssh.action;
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +25,13 @@ public class CategoryAction extends BaseAction<Category> {
 		System.out.println("categories:"+categories);
 		System.out.println("count:"+count);
 		return "jsonMap";
+	}
+	
+	public String deleteByIds(){
+		System.out.println("ids:"+ids);
+		categoryService.deleteByIds(ids);
+		inputStream = new ByteArrayInputStream("true".getBytes());
+		return "stream";
 	}
 	
 }

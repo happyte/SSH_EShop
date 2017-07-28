@@ -4,6 +4,15 @@
 <html>
 <head>
 	<%@ include file="/public/head.jspf" %>
+	<style type="text/css">
+		<style type="text/css">
+		body {
+			margin: 1px;
+		}
+		.searchbox {
+		  margin: -3;
+		}
+	</style>
 	<script type="text/javascript">
 	 $(function(){  
          $('#dg').datagrid({     
@@ -19,7 +28,64 @@
              nowrap:true,  
              singleSelect:true, //如果为真，只允许单行显示，全选功能失效  
              //设置分页  
-             pagination:true,  
+             pagination:true, 
+             //pageSize要与pageList一起使用 
+             pageSize:5,  
+             //设置可选的每页记录数，供用户选择，默认是10,20,30,40...  
+             pageList:[5,10,15,20],  
+             toolbar:[{
+             	 iconCls: 'icon-add',  
+             	 text:'添加类别',  
+             	 handler: function(){alert('--加添类别--');}  
+             },'-',{
+            	 iconCls: 'icon-edit',  
+                 text:'更新类别',  
+                 handler: function(){alert('--更新类别--');}  
+             },'-',{
+            	 iconCls: 'icon-remove',  
+                 text:'删除类别',  
+                 handler: function(){
+                	 //找出checked的行数
+                	 var rows = $("#dg").datagrid("getSelections"); 
+                	 if(rows.length == 0){
+                		 //右下角弹出来的提示
+                		 $.messager.show({
+                			 title:"错误提示",
+                			 msg:"至少要选择一条记录",
+                			 timeout:2000, 
+                			 showType:'slide',
+                		 });
+                	 }
+                	 else {
+						$.messager.confirm("删除的确认对话框","确认要删除此项吗?",function(r){
+							if(r){
+								var ids = "";
+								for(var i=0; i<rows.length; i++){
+									ids += rows[i].id+",";
+								}
+								ids = ids.substring(0,ids.length-1);
+								$.post("category_deleteByIds",{ids:ids},function(result){
+									if(result == "true"){
+										//reload刷新当前页
+										$("#dg").datagrid("reload");
+									}
+									else {
+										 $.messager.show({
+				                			 title:"删除失败",
+				                			 msg:"删除失败，请重新检查",
+				                			 timeout:2000, 
+				                			 showType:'slide',
+				                		 });
+									}
+								});
+							}
+						});
+					}
+                 } 
+             },{ //查询按钮不是LinkButton，它有语法，但是也支持解析HTML标签
+				text:"<input id='ss' name='serach' />"
+             }],
+             
              rowStyler: function(index,row){  
                  console.info("index" + index + "," + row)  
                  if(index % 2 == 0) {  
@@ -31,8 +97,8 @@
              },  
              //同列属性，但是这些列将会冻结在左侧,大小不会改变，当宽度大于250时，会显示滚动条，但是冻结的列不在滚动条内  
              frozenColumns:[[  
-                 {field:'checkbox',checkbox:true},  
-                 {field:'id',title:'编号',width:200}                   
+                 {field:'checkbox',checkbox:true},
+				 {field:'id',title:'编号',width:200}    
              ]],  
              //配置datagrid的列字段   
              //field：列字段的名称，与json的key捆绑  
@@ -66,8 +132,21 @@
 						}
              		}  
              	 },      
-             ]]      
-         });   
+             ]]  
+         });  
+         $('#ss').searchbox({ 
+				//触发查询事件
+				searcher:function(value,name){ 
+					//value表示输入的值,name为search
+					//alert(value + "," + name);
+					//获取当前查询的关键字，通过DataGrid加载相应的信息，使用load加载和显示第一页的所有行。
+					//如果指定了参数，它将取代'queryParams'属性。通常可以通过传递一些参数执行一次查询，通过调用这个方法会向上面url指定的action去发送请求，从服务器加载新数据。
+					$('#dg').datagrid('load',{
+						type: value   //发送的请求里有type参数
+					});
+				}, 
+				prompt:'请输入搜索关键字' 
+		}); 
      });  
 	</script>
 </head>

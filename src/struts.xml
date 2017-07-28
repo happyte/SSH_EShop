@@ -16,6 +16,10 @@
 					rows\[\d+\]\.account\.name
 				</param>
 			</result>
+			<!-- 以流的形式返回 -->
+			<result name="stream" type="stream">
+				<param name="inputName">inputStream</param>
+			</result>
 		</action>
 		
 		<action name="send_*_*" class="com.zs.ssh.action.SendAction">
