@@ -22,6 +22,18 @@
 			</result>
 		</action>
 		
+		<action name="account_*" class="com.zs.ssh.action.AccountAction">
+			<result name="jsonList" type="json">
+				<param name="root">jsonList</param>
+				<param name="excludeProperties">
+					<!-- 过滤掉account的name和pass -->
+					<!-- [0].pass, [1].pass -->
+					\[\d+\]\.pass,\[\d+\]\.name
+				</param>
+			</result>
+		</action>
+		
+		<!-- 用来完成系统 请求转发的action,所有的请求都交给execute-->
 		<action name="send_*_*" class="com.zs.ssh.action.SendAction">
 			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
 		</action>

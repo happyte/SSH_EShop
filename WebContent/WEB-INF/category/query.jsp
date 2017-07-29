@@ -10,7 +10,7 @@
 			margin: 1px;
 		}
 		.searchbox {
-		  margin: -3;
+		  margin: -3px;
 		}
 	</style>
 	<script type="text/javascript">
@@ -26,7 +26,7 @@
              striped:true,  
              //当数据多的时候不换行  
              nowrap:true,  
-             singleSelect:true, //如果为真，只允许单行显示，全选功能失效  
+             singleSelect:false, //如果为真，只允许单行显示，全选功能失效  
              //设置分页  
              pagination:true, 
              //pageSize要与pageList一起使用 
@@ -36,11 +36,21 @@
              toolbar:[{
              	 iconCls: 'icon-add',  
              	 text:'添加类别',  
-             	 handler: function(){alert('--加添类别--');}  
+             	 handler: function(){
+             		//锁定全屏，因为win这个div是在aindex.jsp中创建的
+             		parent.$("#win").window({
+						title:"添加类别",
+						width:350,
+						height:200,
+						content:'<iframe src="send_category_save.action" frameborder="0" width="100%" height="100%" />'
+					});
+             	}  
              },'-',{
             	 iconCls: 'icon-edit',  
                  text:'更新类别',  
-                 handler: function(){alert('--更新类别--');}  
+                 handler: function(){
+                	 alert('--更新类别--');
+                 }  
              },'-',{
             	 iconCls: 'icon-remove',  
                  text:'删除类别',  
@@ -86,20 +96,20 @@
 				text:"<input id='ss' name='serach' />"
              }],
              
-             rowStyler: function(index,row){  
-                 console.info("index" + index + "," + row)  
-                 if(index % 2 == 0) {  
-                     return 'background-color:#fff;';  
-                 } else {  
-                     return 'background-color:#ff0;';  
-                 }  
-                   
-             },  
+             rowStyler: function(index,row){
+			    	console.info("index" + index + "," + row)
+			    	if(index % 2 == 0) {
+			    		return 'background-color:#fff;';
+			    	} else {
+			    		return 'background-color:#c4e1e1;';
+			    	}
+			    	
+			    },
              //同列属性，但是这些列将会冻结在左侧,大小不会改变，当宽度大于250时，会显示滚动条，但是冻结的列不在滚动条内  
-             frozenColumns:[[  
-                 {field:'checkbox',checkbox:true},
-				 {field:'id',title:'编号',width:200}    
-             ]],  
+             frozenColumns:[[
+			     {field:'checkbox',checkbox:true},
+			     {field:'id',title:'编号',width:200}    //这里的field字段要和数据库中的一样，也就是要跟json数据中的一样             
+			 ]],
              //配置datagrid的列字段   
              //field：列字段的名称，与json的key捆绑  
              //title：列标题，是显示给人看的  

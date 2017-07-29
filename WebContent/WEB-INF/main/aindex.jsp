@@ -58,8 +58,8 @@
             <div id="menu" class="easyui-accordion" data-options="fit:true">        
                 <div title="基本操作" data-options="iconCls:'icon-reload'">     
                     <ul>
-						<li><a href="#" title="send_category_query.action">商品管理</a></li>
-						<li><a href="#">类别管理</a></li>
+						<li><a href="#" title="send_category_query.action">类别管理</a></li>
+						<li><a href="#">商品管理</a></li>
 					</ul>    
                 </div>    
                 <div title="其它操作" data-options="iconCls:'icon-reload'"> 
@@ -77,7 +77,8 @@
     				此处以后显示相应的系统信息（当前操作系统的类型，当前项目的域名，硬件的相关配置或者显示报表
     			</div>   
         	</div>
-        </div>     
+        </div>
+        <div id="win" data-options="collapsible:false,minimizable:false,maximizable:false,modal:true"></div>        
     </body>    
 </body>
 </html>

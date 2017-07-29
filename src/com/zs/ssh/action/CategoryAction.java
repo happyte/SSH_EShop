@@ -34,4 +34,9 @@ public class CategoryAction extends BaseAction<Category> {
 		return "stream";
 	}
 	
+	public void save(){
+		System.out.println(model);
+		categoryService.save(model);
+	}
+	
 }
