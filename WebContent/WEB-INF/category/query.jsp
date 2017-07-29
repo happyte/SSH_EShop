@@ -49,7 +49,32 @@
             	 iconCls: 'icon-edit',  
                  text:'更新类别',  
                  handler: function(){
-                	 alert('--更新类别--');
+                	var rows = $("#dg").datagrid("getSelections");
+                	if(rows.length == 0){
+                		 $.messager.show({
+                			 title:"错误提示",
+                			 msg:"请选择一条记录",
+                			 timeout:2000, 
+                			 showType:'slide',
+                		 });
+                	}
+                	else if(rows.length != 1){
+                		$.messager.show({
+               			 title:"错误提示",
+               			 msg:"只能选择一条记录",
+               			 timeout:2000, 
+               			 showType:'slide',
+               		 });
+                	}
+                	else {
+						//弹出更新的列表
+                		parent.$("#win").window({
+    						title:"更新类别",
+    						width:350,
+    						height:200,
+    						content:'<iframe src="send_category_update.action" frameborder="0" width="100%" height="100%" />'
+    					});
+					}
                  }  
              },'-',{
             	 iconCls: 'icon-remove',  
