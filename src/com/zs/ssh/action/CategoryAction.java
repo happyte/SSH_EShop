@@ -14,6 +14,7 @@ public class CategoryAction extends BaseAction<Category> {
 	private static final long serialVersionUID = 1L;
 	
 	public String queryJoinAccount(){
+		System.out.println("model:"+model);
 		//pageMap用来存储分页的数据
 		pageMap = new HashMap<>();
 		List<Category> categories = categoryService.queryJoinAccount(model.getType(), page, rows);

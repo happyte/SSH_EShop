@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.zs.ssh.service.AccountService;
 import com.zs.ssh.service.CategoryService;
+import com.zs.ssh.service.ProductService;
 
 @Controller
 @Scope("prototype")   //非单例的
@@ -26,6 +27,8 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected CategoryService categoryService;
 	@Autowired
 	protected AccountService accountService;
+	@Autowired
+	protected ProductService productService;
 	//这个不能定义为private,因为子类都需要调用的
 	protected Map<String, Object> application;
 	protected Map<String, Object> session;

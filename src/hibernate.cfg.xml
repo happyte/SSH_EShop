@@ -16,6 +16,7 @@
         
         <mapping class="com.zs.ssh.model.Category"/>
         <mapping class="com.zs.ssh.model.Account"/>
+         <mapping class="com.zs.ssh.model.Product"/>
         
     </session-factory>
 </hibernate-configuration>

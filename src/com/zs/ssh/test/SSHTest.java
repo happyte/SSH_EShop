@@ -1,6 +1,7 @@
 package com.zs.ssh.test;
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 import org.junit.Test;
@@ -12,8 +13,10 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.zs.ssh.model.Account;
 import com.zs.ssh.model.Category;
+import com.zs.ssh.model.Product;
 import com.zs.ssh.service.AccountService;
 import com.zs.ssh.service.CategoryService;
+import com.zs.ssh.service.ProductService;
 
 //Spring的单元测试
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +32,9 @@ public class SSHTest {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private ProductService ProductService;
 
 	//Spring的单元测试失败，不知道是不是因为包的原因引起的
 	//把全部的jar包导入进来，测试成功了......
@@ -71,6 +77,15 @@ public class SSHTest {
 	@Test
 	public void testGetCount(){
 		System.out.println(categoryService.getCount(""));
+	}
+	
+	@Test
+	public void testProductAdd(){
+//		Product product = new Product("圣得西服", new BigDecimal(12.5), "test.jpg", 
+//				"这里是简单介绍", "这里是详细介绍", true, true);
+		Product product = new Product("衫衫西服", new BigDecimal(10.0), "test.jpg", "这里是简单介绍", 
+				"这里是详细介绍", new Date(), true, true, new Category(2, null, null));
+		ProductService.save(product);
 	}
 	
 }
