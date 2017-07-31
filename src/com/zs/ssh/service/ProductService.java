@@ -9,4 +9,6 @@ public interface ProductService extends BaseService<Product>{
     public List<Product> queryJoinCategory(String name,int page,int size); 
     //根据关键字查询总记录
     public Long getCount(String name);
+    //根据ids删除记录
+    public void deleteByIds(String ids);
 }

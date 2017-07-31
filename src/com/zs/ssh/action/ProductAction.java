@@ -1,5 +1,6 @@
 package com.zs.ssh.action;
 
+import java.io.ByteArrayInputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +26,12 @@ public class ProductAction extends BaseAction<Product> {
 		System.out.println("products:"+products);
 		System.out.println("count:"+count);
 		return "jsonMap";
+	}
+	
+	public String deleteByIds(){
+		productService.deleteByIds(ids);
+		inputStream = new ByteArrayInputStream("true".getBytes());
+		return "stream";
 	}
 
 }

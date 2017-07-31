@@ -19,7 +19,7 @@
              //请求数据的url地址，后面会改成请求我们自己的url  
              url:'product_queryJoinCategory.action',  
              loadMsg:'Loading......',  
-             queryParams:{type:''},//参数  
+             queryParams:{name:''},//参数  
              //width:300,  
              fitColumns:true,//水平自动展开，如果设置此属性，则不会有水平滚动条，演示冻结列时，该参数不要设置  
              //显示斑马线  
@@ -49,7 +49,42 @@
             	 iconCls: 'icon-remove',  
                  text:'删除商品',  
                  handler: function(){
-                	
+                	 //找出checked的行数
+                	 var rows = $("#dg").datagrid("getSelections"); 
+                	 if(rows.length == 0){
+                		 //右下角弹出来的提示
+                		 $.messager.show({
+                			 title:"错误提示",
+                			 msg:"至少要选择一条记录",
+                			 timeout:2000, 
+                			 showType:'slide',
+                		 });
+                	 }
+                	 else {
+ 						$.messager.confirm("删除的确认对话框","确认要删除此项吗?",function(r){
+ 							if(r){
+ 								var ids = "";
+ 								for(var i=0; i<rows.length; i++){
+ 									ids += rows[i].id+",";
+ 								}
+ 								ids = ids.substring(0,ids.length-1);
+ 								$.post("product_deleteByIds",{ids:ids},function(result){
+ 									if(result == "true"){
+ 										//reload刷新当前页
+ 										$("#dg").datagrid("reload");
+ 									}
+ 									else {
+ 										 $.messager.show({
+ 				                			 title:"删除失败",
+ 				                			 msg:"删除失败，请重新检查",
+ 				                			 timeout:2000, 
+ 				                			 showType:'slide',
+ 				                		 });
+ 									}
+ 								});
+ 							}
+ 						});
+ 					}
                  } 
              },{ //查询按钮不是LinkButton，它有语法，但是也支持解析HTML标签
 				text:"<input id='ss' name='serach' />"
@@ -110,7 +145,9 @@
          $('#ss').searchbox({ 
 				//触发查询事件
 				searcher:function(value,name){ 
-					
+					$('#dg').datagrid('load',{
+						name: value   //发送的请求里有type参数
+					});
 				}, 
 				prompt:'请输入搜索关键字' 
 		}); 

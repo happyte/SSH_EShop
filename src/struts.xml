@@ -33,6 +33,10 @@
 					rows\[\d+\]\.category\.account <!--过滤掉所有用户 -->>
 				</param>
 			</result>
+			<!-- 以流的形式返回 -->
+			<result name="stream" type="stream">
+				<param name="inputName">inputStream</param>
+			</result>
 		</action>
 		
 		<action name="account_*" class="com.zs.ssh.action.AccountAction">

@@ -100,6 +100,7 @@
 								}
 								ids = ids.substring(0,ids.length-1);
 								$.post("category_deleteByIds",{ids:ids},function(result){
+									//以流的形式进行返回
 									if(result == "true"){
 										//reload刷新当前页
 										$("#dg").datagrid("reload");
