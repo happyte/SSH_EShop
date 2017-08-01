@@ -41,4 +41,12 @@ public class ProductAction extends BaseAction<Product> {
 		System.out.println(model);
 		productService.save(model);
 	}
+	
+	public void update(){
+		//struts2处理图片操作......
+		//前台还有date字段没有传进来，需要手工添加一下
+		model.setDate(new Date());
+		System.out.println(model);
+		productService.update(model);
+	}
 }

@@ -67,7 +67,15 @@
 					$("#ff").form("enableValidation");
 					//如果验证成功，则提交数据
 					if($("#ff").form("validate")){			
-						
+						$("#ff").form('submit', {
+							url:'product_update.action',
+							success:function(){
+								//如果成功了，关闭当前窗口  
+	                            parent.$("#win").window("close");  
+								//重新刷新
+								dg.datagrid("reload");
+							}
+						});
 					}			
 				});
 		});
