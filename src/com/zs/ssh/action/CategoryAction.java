@@ -45,4 +45,9 @@ public class CategoryAction extends BaseAction<Category> {
 		categoryService.update(model);
 	}
 	
+	public String query(){
+		jsonList = categoryService.query();
+		return "jsonList";
+	}
+	
 }

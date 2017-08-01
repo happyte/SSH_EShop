@@ -1,6 +1,7 @@
 package com.zs.ssh.action;
 
 import java.io.ByteArrayInputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,5 +34,11 @@ public class ProductAction extends BaseAction<Product> {
 		inputStream = new ByteArrayInputStream("true".getBytes());
 		return "stream";
 	}
-
+	
+	public void save(){
+		//需要专门利用struts处理上传照片
+		model.setDate(new Date());
+		System.out.println(model);
+		productService.save(model);
+	}
 }

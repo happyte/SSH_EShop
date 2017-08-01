@@ -37,13 +37,44 @@
              	 iconCls: 'icon-add',  
              	 text:'添加商品',  
              	 handler: function(){
-             	
+             		//锁定全屏，因为win这个div是在aindex.jsp中创建的
+              		parent.$("#win").window({
+ 						title:"添加商品",
+ 						width:350,
+ 						height:200,
+ 						content:'<iframe src="send_product_save.action" frameborder="0" width="100%" height="100%" />'
+ 					});
              	}  
              },'-',{
             	 iconCls: 'icon-edit',  
                  text:'更新商品',  
                  handler: function(){
-                	   
+                	 var rows = $("#dg").datagrid("getSelections");
+                 	if(rows.length == 0){
+                 		 $.messager.show({
+                 			 title:"错误提示",
+                 			 msg:"请选择一条记录",
+                 			 timeout:2000, 
+                 			 showType:'slide',
+                 		 });
+                 	}
+                 	else if(rows.length != 1){
+                 		$.messager.show({
+                			 title:"错误提示",
+                			 msg:"只能选择一条记录",
+                			 timeout:2000, 
+                			 showType:'slide',
+                		 });
+                 	}
+                 	else {
+ 						//弹出更新的列表
+                 		parent.$("#win").window({
+     						title:"商品类别",
+     						width:350,
+     						height:200,
+     						content:'<iframe src="send_product_update.action" frameborder="0" width="100%" height="100%" />'
+     					});
+ 					}
                  }  
              },'-',{
             	 iconCls: 'icon-remove',  

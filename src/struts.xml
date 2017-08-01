@@ -20,6 +20,12 @@
 			<result name="stream" type="stream">
 				<param name="inputName">inputStream</param>
 			</result>
+			<result name="jsonList" type="json">
+				<param name="root">jsonList</param>
+				<param name="excludeProperties">
+					rows\[\d+\]\.account
+				</param>
+			</result>
 		</action>
 		
 		<action name="product_*" class="com.zs.ssh.action.ProductAction" method="{1}">
