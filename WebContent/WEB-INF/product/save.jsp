@@ -97,7 +97,7 @@
 			<input type="text" name="name">
 		</div>
 		<div>
-			<label>商品类型:</label>
+			<label>商品价格:</label>
 			<input type="text" name="price">
 		</div>
 		<div>

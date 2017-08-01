@@ -12,6 +12,14 @@
 	<context:component-scan base-package="com.zs.ssh"></context:component-scan>
 	<context:property-placeholder location="classpath:db.properties"/>
 	
+	 <bean id="prop" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	 	<property name="locations">
+	 		<array>
+	 			<value>classpath:public.properties</value>
+	 		</array>
+	 	</property>
+	 </bean>
+	
 	<!-- 配置数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="${jdbc.driverClass}"></property>

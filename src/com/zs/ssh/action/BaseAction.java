@@ -14,9 +14,11 @@ import org.springframework.stereotype.Controller;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.zs.ssh.model.FileImage;
 import com.zs.ssh.service.AccountService;
 import com.zs.ssh.service.CategoryService;
 import com.zs.ssh.service.ProductService;
+import com.zs.ssh.utils.FileUpload;
 
 @Controller
 @Scope("prototype")   //非单例的
@@ -29,6 +31,9 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected AccountService accountService;
 	@Autowired
 	protected ProductService productService;
+	//上传文件工具类
+	@Autowired
+	protected FileUpload fileUpload;
 	//这个不能定义为private,因为子类都需要调用的
 	protected Map<String, Object> application;
 	protected Map<String, Object> session;
@@ -41,6 +46,8 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected InputStream inputStream;
 	//显示添加用户下拉列表的用户名
 	protected List<T> jsonList = null;
+	//打包的图片
+	protected FileImage fileImage;
 
 	public int getPage() {
 		return page;
@@ -88,6 +95,14 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 
 	public void setJsonList(List<T> jsonList) {
 		this.jsonList = jsonList;
+	}
+	
+	public FileImage getFileImage() {
+		return fileImage;
+	}
+
+	public void setFileImage(FileImage fileImage) {
+		this.fileImage = fileImage;
 	}
 
 	@Override

@@ -37,6 +37,9 @@ public class ProductAction extends BaseAction<Product> {
 	
 	public void save(){
 		//需要专门利用struts处理上传照片
+		System.out.println("上传的图片:"+fileImage);
+		String pic = fileUpload.uploadFile(fileImage);
+		model.setPic(pic);
 		model.setDate(new Date());
 		System.out.println(model);
 		productService.save(model);
@@ -44,6 +47,9 @@ public class ProductAction extends BaseAction<Product> {
 	
 	public void update(){
 		//struts2处理图片操作......
+		System.out.println("上传的图片:"+fileImage);
+		String pic = fileUpload.uploadFile(fileImage);
+		model.setPic(pic);
 		//前台还有date字段没有传进来，需要手工添加一下
 		model.setDate(new Date());
 		System.out.println(model);
