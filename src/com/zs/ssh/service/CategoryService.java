@@ -12,4 +12,6 @@ public interface CategoryService extends BaseService<Category> {
     public Long getCount(String type);
     //根据ids删除记录
     public void deleteByIds(String ids);
+    //查询热点和非热点
+    public List<Category> queryByHot(boolean hot);
 }

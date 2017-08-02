@@ -13,6 +13,11 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
+  <!-- 配置监听器,该监听器需要配置在bean监听器下面 -->
+  <listener>
+  	<listener-class>com.zs.ssh.listener.InitDataListener</listener-class>
+  </listener>
+  
   <!-- 配置Struts2的Filter -->
   <filter>
         <filter-name>struts2</filter-name>

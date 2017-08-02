@@ -34,7 +34,7 @@ public class SSHTest {
 	private AccountService accountService;
 	
 	@Autowired
-	private ProductService ProductService;
+	private ProductService productService;
 
 	//Spring的单元测试失败，不知道是不是因为包的原因引起的
 	//把全部的jar包导入进来，测试成功了......
@@ -85,7 +85,16 @@ public class SSHTest {
 //				"这里是简单介绍", "这里是详细介绍", true, true);
 		Product product = new Product("衫衫西服", new BigDecimal(10.0), "test.jpg", "这里是简单介绍", 
 				"这里是详细介绍", new Date(), true, true, new Category(2, null, null));
-		ProductService.save(product);
+		productService.save(product);
 	}
 	
+	@Test
+	public void testCategoryHot(){
+		System.out.println(categoryService.queryByHot(true));
+	}
+	
+	@Test
+	public void testProductHot(){
+		System.out.println(productService.queryByCategoryId(1));
+	}
 }

@@ -35,4 +35,10 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 		getSession().createQuery(hql).executeUpdate();
 	}
 
+	@Override
+	public List<Category> queryByHot(boolean hot) {
+		String hql = "from Category c where c.hot=:hot";
+		return getSession().createQuery(hql).setBoolean("hot", hot).list();
+	}
+
 }

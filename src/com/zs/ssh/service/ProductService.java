@@ -11,4 +11,6 @@ public interface ProductService extends BaseService<Product>{
     public Long getCount(String name);
     //根据ids删除记录
     public void deleteByIds(String ids);
+    //根据热点类别查询推荐商品
+    public List<Product> queryByCategoryId(int cid);
 }
