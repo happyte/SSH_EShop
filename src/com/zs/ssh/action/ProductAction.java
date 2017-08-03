@@ -55,4 +55,10 @@ public class ProductAction extends BaseAction<Product> {
 		System.out.println(model);
 		productService.update(model);
 	}
+	
+	//点击图片跳转到具体详情页面
+	public String get(){
+		request.put("product", productService.get(model.getId()));
+		return "detail";
+	}
 }
