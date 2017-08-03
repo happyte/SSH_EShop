@@ -13,10 +13,16 @@
 			org.hibernate.dialect.MySQLDialect
 		</property>
 		<property name="show_sql">true</property>
+		
+		<!-- 配置二级缓存相关内容 -->
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
         
         <mapping class="com.zs.ssh.model.Category"/>
         <mapping class="com.zs.ssh.model.Account"/>
-         <mapping class="com.zs.ssh.model.Product"/>
+        <mapping class="com.zs.ssh.model.Product"/>
+        
+        <!-- 配置哪些类支持缓存,热门商品Product -->
+        <class-cache usage="read-only" class="com.zs.ssh.model.Product"/>
         
     </session-factory>
 </hibernate-configuration>
