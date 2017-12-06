@@ -17,7 +17,9 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.zs.ssh.model.FileImage;
 import com.zs.ssh.service.AccountService;
 import com.zs.ssh.service.CategoryService;
+import com.zs.ssh.service.ForderService;
 import com.zs.ssh.service.ProductService;
+import com.zs.ssh.service.SorderService;
 import com.zs.ssh.utils.FileUpload;
 
 @Controller
@@ -31,6 +33,10 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected AccountService accountService;
 	@Autowired
 	protected ProductService productService;
+	@Autowired
+	protected SorderService sorderService;
+	@Autowired
+	protected ForderService forderService;
 	//上传文件工具类
 	@Autowired
 	protected FileUpload fileUpload;

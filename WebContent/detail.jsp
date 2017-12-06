@@ -307,7 +307,7 @@
                         </li>
                     </ul>
                     <div class="add_to_buttons">                   
-                        <a href="#}">
+                        <a href="${shop}/sorder_addSorder.action?product.id=${product.id}">
                         	<button class="add_cart">加入购物车</button>
                         </a>
                         

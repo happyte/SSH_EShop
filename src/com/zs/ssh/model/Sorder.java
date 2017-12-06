@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
+//购物项
 @Entity
 public class Sorder implements Serializable {
 	//字段

@@ -61,5 +61,10 @@
 		<action name="send_*_*" class="com.zs.ssh.action.SendAction">
 			<result name="send">/WEB-INF/{1}/{2}.jsp</result>
 		</action>
+		
+		<!-- 用来跳转购物车 -->
+		<action name="sorder_*" class="com.zs.ssh.action.SorderAction" method="{1}">
+			<result name="showCart">/user/showCart.jsp</result>
+		</action>
 	</package>
 </struts>
