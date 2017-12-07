@@ -31,10 +31,10 @@
 					<!-- 小购物车 -->
 					<div class="minicart">
 						<a class="minicart_link" href="#"> 
-						<%-- <span class="item">
+						<span class="item">
 								<b>${fn:length(sessionScope.forder.sorders)}
 								</b> 件/ 
-						</span>  --%>
+						</span>
 						<span class="price"> <b>￥${sessionScope.forder.total}</b> </span> </a>
 					</div>
 					<!-- 小购物车结束 -->
