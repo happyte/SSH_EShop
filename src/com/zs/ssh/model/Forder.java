@@ -20,6 +20,10 @@ import javax.persistence.OneToMany;
 @Entity
 public class Forder implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private User user;
 	private Status status;

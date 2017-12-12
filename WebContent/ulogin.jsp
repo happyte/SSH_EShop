@@ -3,11 +3,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<%@ include file="/public/head.jspf" %>
-	<script type="text/javascript">
-	</script>
+	<%@include file="/public/head.jspf" %>
+	<style type="text/css">
+		#dd div{
+			padding: 5px;
+		}
+	</style>
 </head>
-	
 <body>
 	<div class="wrapper">
 		<div class="header">
@@ -19,9 +21,9 @@
 					<ul class="top_links fr">
 						<li><a href="#">首页</a></li>
 						<li><a href="#">我的账户</a></li>
-						<li class="highlight"><a href="#">购物车</a></li>
+						<li><a href="#">购物车</a></li>
 						<li><a href="#">注册</a></li>
-						<li><a href="#">登录</a></li>
+						<li class="highlight"><a href="#">登录</a></li>
 					</ul>
 					<!--头部小导航结束-->
 					<!-- logo -->
@@ -30,13 +32,9 @@
 					</h1>
 					<!-- 小购物车 -->
 					<div class="minicart">
-						<a class="minicart_link" href="#"> 
-						<span class="item">
-								<b>${fn:length(sessionScope.forder.sorders)}
-								</b> 件/ 
-						</span>
-						<span class="price"> <b>￥${sessionScope.forder.total}</b> </span> </a>
-					</div>　
+						<a class="minicart_link" href="#"> <span class="item">
+								<b>0</b>件/ </span> <span class="price"> <b>￥${sessionScope.forder.total}</b> </span> </a>
+					</div>
 					<!-- 小购物车结束 -->
 					<!-- 搜索框 -->
 					<div class="header_search">
@@ -108,85 +106,27 @@
 		<!--导航栏结束-->
 		<div class="section_container">
 			<!-- 购物车 -->
-			<div id="shopping_cart">
-				<div class="message success">我的购物车</div>
-				<table class="data-table cart-table" cellpadding="0" cellspacing="0">
-					<tr>
-						<th class="align_center" width="10%">商品编号</th>
-						<th class="align_left" width="35%" colspan="2">商品名称</th>
-						<th class="align_center" width="10%">销售价格</th>
-						<th class="align_center" width="20%">数量</th>
-						<th class="align_center" width="15%">小计</th>
-						<th class="align_center" width="10%">删除</th>
-					</tr>
-					<c:forEach items="${sessionScope.forder.sorders }" var="sorder" varStatus="num">
-					<tr lang="${sorder.product.id}">
-						<td class="align_center"><a href="#" class="edit">${num.count }</a>
-						</td>
-						<td width="80px"><img src="${shop}/files/${sorder.product.pic}" width="80" height="80" />
-						</td>
-						<td class="align_left"><a class="pr_name" href="#">${sorder.name }</a>
-						</td>
-						<td class="align_center vline">
-							${sorder.price }
-						</td>
-						<td class="align_center vline">
-							<!-- 文本框 -->
-							<input class="text" style="height: 20px;" value="${sorder.number }" lang="${sorder.number }">		
-						</td>
-						<td class="align_center vline">
-							${sorder.price*sorder.number }
-						</td>
-						<td class="align_center vline"><a href="#" class="remove"></a>
-						</td>
-					</tr>
-					</c:forEach>
-
-				</table>
-				<!-- 结算 -->
-				<div class="totals">
-					<table id="totals-table">
-						<tbody>
-							<tr>
-								<td width="60%" colspan="1" class="align_left"><strong>小计</strong>
-								</td>
-								<td class="align_right" style=""><strong>￥<span
-										class="price" id="total">${sessionScope.forder.total}</span>
-								</strong>
-								</td>
-							</tr>
-							<tr>
-								<td width="60%" colspan="1" class="align_left">运费</td>
-								<td class="align_right" style="">￥<span class="price" id="yunfei">0.00</span>
-								</td>
-							</tr>
-							<tr>
-								<td width="60%" colspan="1" class="align_left total"><strong>总计</strong>
-								</td>
-								<td class="align_right" style="">￥<span class="total" id="totalAll"><strong>${sessionScope.forder.total}</strong>
-								</span>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<div class="action_buttonbar">
-						<font><a href="${shop}/user/confirm.jsp">
-							<button type="button" title="" class="checkout fr" style="background-color: #f38256;">
-									订单确认
-							</button>
-						</a></font>
-						<button type="button" title="" class=" fr">
-							<font><font>清空购物车</font>
-							</font>
-						</button>
-						<a href="${shop}/index.jsp">
-							<button type="button" title="" class="continue fr">
-								<font>继续购物</font>
-							</button></a>
-						<div style="clear:both"></div>
+			<div id="dd" class="action_buttonbar" style="text-align:center;">
+				<form method="post" action="${shop}/user_login.action">
+					<div>
+						<label for="login">账号:&nbsp;</label> 
+						<input type="text" name="login" />
 					</div>
-				</div>
+					<div>
+						<label for="pass">密码:&nbsp;</label> 
+						<input type="text" name="pass" />
+					</div>
+					<div>
+						${sessionScope.error}  
+					</div>
+					<div>
+						<input type="submit" value="登陆" style="width:60px;height:30px" />
+						<input type="button" value="注册" onclick="window.open('${shop}/index.jsp','_self')" style="width:60px;height:30px" />
+					</div>
+			   </form>
+			   <div style="clear:both"></div>
 			</div>
+		</div>
 			<!-- 导航栏结束 -->
 			<div class="footer_container">
 				<div class="footer">
@@ -236,6 +176,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

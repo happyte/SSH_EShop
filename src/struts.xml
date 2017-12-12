@@ -66,5 +66,12 @@
 		<action name="sorder_*" class="com.zs.ssh.action.SorderAction" method="{1}">
 			<result name="showCart">/user/showCart.jsp</result>
 		</action>
+		
+		<!-- 跳转用户登陆 -->
+		<action name="user_*" class="com.zs.ssh.action.UserAction" method="{1}">
+			<result name="login" type="redirect">/ulogin.jsp</result>
+			<result name="goURL" type="redirect">${#session.goURL}</result>
+			<!--从值栈中取出session的值  -->
+		</action>
 	</package>
 </struts>

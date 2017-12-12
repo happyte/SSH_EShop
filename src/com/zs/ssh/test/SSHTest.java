@@ -14,9 +14,11 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.zs.ssh.model.Account;
 import com.zs.ssh.model.Category;
 import com.zs.ssh.model.Product;
+import com.zs.ssh.model.User;
 import com.zs.ssh.service.AccountService;
 import com.zs.ssh.service.CategoryService;
 import com.zs.ssh.service.ProductService;
+import com.zs.ssh.service.UserService;
 
 //Spring的单元测试
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,6 +37,9 @@ public class SSHTest {
 	
 	@Autowired
 	private ProductService productService;
+	
+	@Autowired
+	private UserService userService;
 
 	//Spring的单元测试失败，不知道是不是因为包的原因引起的
 	//把全部的jar包导入进来，测试成功了......
@@ -45,8 +50,11 @@ public class SSHTest {
 
 	@Test
 	public void testHibernate(){
-		//categoryService.save(new Category("男士休闲", true));
-		accountService.save(new Account("user1", "客服B", "user1"));
+		User user = new User();
+		user.setLogin("user");
+		user.setPass("user");
+		user = userService.login(user);
+		System.out.println("user:"+user);
 	}
 	
 	@Test

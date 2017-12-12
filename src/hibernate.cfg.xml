@@ -20,6 +20,10 @@
         <mapping class="com.zs.ssh.model.Category"/>
         <mapping class="com.zs.ssh.model.Account"/>
         <mapping class="com.zs.ssh.model.Product"/>
+        <mapping class="com.zs.ssh.model.User"/>
+        <mapping class="com.zs.ssh.model.Forder"/>
+        <mapping class="com.zs.ssh.model.Sorder"/>
+        <mapping class="com.zs.ssh.model.Status"/>
         
         <!-- 配置哪些类支持缓存,热门商品Product -->
         <class-cache usage="read-only" class="com.zs.ssh.model.Product"/>
