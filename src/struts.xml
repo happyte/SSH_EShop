@@ -73,5 +73,10 @@
 			<result name="goURL" type="redirect">${#session.goURL}</result>
 			<!--从值栈中取出session的值  -->
 		</action>
+		
+		<!-- 订单跳转 -->
+		<action name="forder_*" class="com.zs.ssh.action.ForderAction" method="{1}">
+			<result name="bank" type="redirect">/user/bank.jsp</result>
+		</action>
 	</package>
 </struts>

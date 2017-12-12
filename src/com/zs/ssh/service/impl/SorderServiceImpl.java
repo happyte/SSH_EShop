@@ -25,6 +25,9 @@ public class SorderServiceImpl extends BaseServiceImpl<Sorder> implements Sorder
 			}
 		}
 		if(!isHave){
+			//forder是创建出来的,id = null
+			//在入库的时候是先入库购物车，再入库购物项，那时候就有主键了  
+			sorder.setForder(forder);
 			forder.getSorders().add(sorder);
 		}
 		return forder;
