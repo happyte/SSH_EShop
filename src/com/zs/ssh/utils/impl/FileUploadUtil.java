@@ -1,6 +1,7 @@
 package com.zs.ssh.utils.impl;
 
 import java.io.File;
+import java.io.FilenameFilter;
 import java.util.UUID;
 
 import org.apache.commons.io.FilenameUtils;
@@ -21,6 +22,9 @@ public class FileUploadUtil implements FileUpload {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
+	
+	@Value("#{prop.basePath+prop.bankImagePath}")
+	private String bankImagePath;
 	
 	private String getExtension(String fileName){
 		return FilenameUtils.getExtension(fileName);
@@ -47,6 +51,19 @@ public class FileUploadUtil implements FileUpload {
 		}finally {
 			fileImage.getFile().delete();
 		}
+	}
+	
+	public String[] getBankImage(){
+		System.out.println("bankImagePath:"+bankImagePath);
+		String[] list = new File(bankImagePath).list(new FilenameFilter() {
+			//只接受后缀为gif格式的照片
+			@Override
+			public boolean accept(File dir, String name) {
+				System.out.println("dir:"+dir+" ,name:"+name);
+				return name.endsWith(".gif");
+			}
+		});
+		return list;
 	}
 
 }
