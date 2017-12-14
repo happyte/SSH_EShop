@@ -7,7 +7,6 @@ import com.zs.ssh.model.User;
 @Controller
 public class UserAction extends BaseAction<User> {
 	public String login(){
-		System.out.println("登陆======");
 		model = userService.login(model);
 		if (model == null) {
 			System.out.println("登陆失败");

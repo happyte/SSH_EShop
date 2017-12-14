@@ -11,7 +11,7 @@ import com.zs.ssh.model.Sorder;
 @Controller
 public class SorderAction extends BaseAction<Sorder> {
 	public String addSorder(){
-		System.out.println("加入购物车操作..........");
+//		System.out.println("加入购物车操作..........");
 		//1.根据product.id获取商品
 		Product product = productService.get(model.getProduct().getId());
 		//2.判断session中是否有购物车，没有就创建

@@ -18,6 +18,7 @@ import com.zs.ssh.model.FileImage;
 import com.zs.ssh.service.AccountService;
 import com.zs.ssh.service.CategoryService;
 import com.zs.ssh.service.ForderService;
+import com.zs.ssh.service.PayService;
 import com.zs.ssh.service.ProductService;
 import com.zs.ssh.service.SorderService;
 import com.zs.ssh.service.UserService;
@@ -40,6 +41,8 @@ public class BaseAction<T> extends ActionSupport implements RequestAware,Session
 	protected ForderService forderService;
 	@Autowired
 	protected UserService userService;
+	@Autowired
+	protected PayService payService;
 	//上传文件工具类
 	@Autowired
 	protected FileUpload fileUpload;

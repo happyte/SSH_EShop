@@ -25,25 +25,24 @@ public class UserFilter implements Filter {
 	//http://localhost:8989/EShop/sorder_addSorder.action?product.id=5
 	//http://localhost:8989/EShop/user/confirm.jsp
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("=======来到过滤器=========");
 		HttpServletRequest req  = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		//判断当前session中是否有用户信息
 		if(req.getSession().getAttribute("user") == null){
-			System.out.println("没有用户信息");
+//			System.out.println("没有用户信息");
 			String goURL = req.getServletPath();
 			String param = req.getQueryString();
 			if(param != null){
 				goURL = goURL+"?"+param;
 			}
-			System.out.println("goURL:"+goURL);
-			System.out.println("path:"+req.getServletPath());
+//			System.out.println("goURL:"+goURL);
+//			System.out.println("path:"+req.getServletPath());
 			req.getSession().setAttribute("goURL", goURL);
 			req.getSession().setAttribute("error", "非法请求，请先登陆");
 			res.sendRedirect(req.getContextPath()+"/ulogin.jsp");
 		}
 		else {
-			System.out.println("有用户信息");
+//			System.out.println("有用户信息");
 			chain.doFilter(request, response);
 		}
 	}

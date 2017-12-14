@@ -78,5 +78,10 @@
 		<action name="forder_*" class="com.zs.ssh.action.ForderAction" method="{1}">
 			<result name="bank" type="redirect">/user/bank.jsp</result>
 		</action>
+		
+		<!-- 订单支付 -->
+		<action name="pay_*" class="com.zs.ssh.action.PayAction" method="{1}">
+			<result name="pay">/user/pay.jsp</result>
+		</action>
 	</package>
 </struts>
